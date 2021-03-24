@@ -18,13 +18,14 @@ def editdist(txt, pat):
     print("z_values", z_values)
     res = []
     for i in range(len(pat)+1, len(zString)):
-        if z_suffix[i] == len(pat):
+        if z_values[i] == len(pat):
             matchingtxt = []
             for j in range(len(pat)):
                 matchingtxt.append(zString[i+j])
             res.append([i, matchingtxt])
-        
-    return
+        else:
+
+    return res
 
 def z_calculator(zString):
     z_values = [0 for _ in range(len(zString))]
@@ -58,4 +59,5 @@ def naive_comparison(zString, zString_index, pat_index):
     return pat_index
 
 
-editdist("acdef", "abcdef")
+#editdist("acdef", "abcdef")
+print(editdist("aabcdef", "abcd"))
