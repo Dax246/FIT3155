@@ -1,0 +1,52 @@
+----------------------------------------------------------------------------------------------------
+Name: Damien Mahima Ambegoda
+A1 mark:                            8.0/10.00
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+Question 1:                         3.25/4.00
+----------------------------------------------------------------------------------------------------
+Output marks (0.25 per test case):  0.25/1.00
+Approach marks:                        3/3.00
+Feedback:
+
+- [1 mark] Output
+  -- pass: (1 / 4)
+  -- mark: 0.25
+
+- Approach 1 Z-algorithm based (3 marks total): 3
+   -- [1.25 marks] Computing Z values: 1.25
+   -- [1.75 marks] Approximate matching: 1.75
+
+- Comment: There are only little differences in your failed test cases,
+seems there are some minor bug in your `editdist` function.
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+Question 2:                         4.75/6.00
+----------------------------------------------------------------------------------------------------
+Output marks (0.25 per test case):  0.75/1.00
+Approach marks:                     4.00/5.00
+Feedback:
+- [1 marks] Output (0.25 per test case, over 4 test cases)
+  -- pass: (3 / 4)
+  -- mark: 0.75
+
+- [1.5 mark] Modified bad character rule: 0.75
+  -- Comment: It's good that you realize bad character is not helpful,
+  you need to implement a modified bad character rule to get full mark.
+
+
+- [0.5 marks] Goodsuffix jumptable: 0.5
+
+- [0.5 mark] Matched prefix jumptable: 0.5
+
+- [2.5 marks] Correct shifting and optimisation: 2.25
+    # [2 marks] Not comparing regions known to match after a shift
+    # [0.25 marks] Shifting correctly using the modified bad character rule.
+Just missing some shifting marks associatate with where the bad character is chosen from in
+ the case that a modification was made to the bad character rule.
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+If you have any queries regarding any of the above please do not
+hesitate to contact me via email at: Taylor.Kearney@monash.edu
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------

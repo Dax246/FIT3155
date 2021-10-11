@@ -1,0 +1,103 @@
+----------------------------------------------------------------------------------------------------
+Name: Damien Mahima Ambegoda
+A3 mark:                            8.5/10.00
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+Question 1:                         2.75/3.50
+----------------------------------------------------------------------------------------------------
+Output marks (0.25 per test case):     1/1.00
+Approach marks:                     1.75/2.50
+Feedback:
+Test cases (1/1 marks) (4/4 tests passed)
+   
+Approach: [1.75/2.5 marks]
+        -- [0.75/1 mark] Sampling n in the m-bit range
+        -- [1/1.5 marks] Miller Rabin
+            # [0.5 marks] General algorithm
+            PLUS
+            # [0.5/1 mark] Primality tests
+                * [0.25/0.5 marks] Computing repeated squaring correctly
+                PLUS
+                * [0.25/0.5 marks] Applying Fermat's and Sequence test correctly
+
+Nice work! It all works perfectly, and you have some good optimisations here, there are just
+ a few minor efficiency issues that I thought I'd mention. 
+
+Firstly, on line 80 you compute the lower and upper bound on every iteration when we could
+ just compute these once since they are fixed (-0.25 marks). I also don't feel the dictionary
+ is really an optimisation here. For large values of m we have such a large range that is
+ it actually very unlikely that we generate the same number multiple times, however as the
+ range gets larger your dictionary will add greater and greater overhead to the search (-0.25
+ marks). Finally, in your repeated squaring you also store each value in the sequence (line
+ 18) but we actually never need to access the previous values here, just the current one if
+ the corresponding bit is 1. You have a similar issue on line 52. For the sequence test we
+ only ever need the current and the previous term, so you don't need to store them all here
+ (-0.25 marks).
+
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+Question 2:                         2.25/2.50
+----------------------------------------------------------------------------------------------------
+Output marks (0.25 per test case):  0.75/1.00
+Approach marks:                      1.5/1.50
+Feedback:
+Test cases (0.75/1 marks) (3/4 tests passed)
+   
+Approach: [1.5 marks]
+        -- [1 mark] Huffman code construction 
+        -- [0.5 mark] Elias code construction
+
+
+Nice work! It only fails the first test case where the string is made up of a single character,
+ and this is because you assign an empty Huffman code in this case.
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+Question 3:                          3.5/4.00
+----------------------------------------------------------------------------------------------------
+Output marks (0.25 per test case):     1/1.00
+Approach marks:                      2.5/3.00
+Feedback:
+Test cases (1/1 marks) (4/4 tests passed)
+
+Approach: [2.5/3 marks]
+     - [1 mark] Elias decoding
+         # [0.5 marks] Reading the correct number of bits per length/code component
+         PLUS
+         # [0.25 marks] Flipping the 0 to 1 for each length component
+         PLUS
+         # [0.25 marks] Reading the code component correctly and terminating
+     - [0.5/1 mark] Huffman decoding
+         # [0.5 marks] Dictionary based approach
+     - [1 mark] LZSS decoding
+         # [0.25 marks] For correctly decoding tuples <1,char>
+         PLUS
+         # [0.75 marks] For correctly decoding triples <0,offset,length>
+
+Nice work! It all works perfectly; the only issue is that your Huffman decoding is makes use
+ of a dictionary which is less efficient than reconstructing the original Huffman tree. 
+
+Imagine that we have N Huffman codes and that the cumulative length of all the codes is L.
+ I can reconstruct the Huffman tree by iterating through each code once and simply going left
+ or right (and creating new nodes if required) depending on whether the current character
+ in my code is a 0 or a 1. Once I reach the end of my code (we have its length from the header)
+ I simply store the corresponding character at the leaf. Reconstruction of the tree requires
+ O(L)-time. Then if I need to look up the character that corresponds to a code, I simply traverse
+ the tree until I reach a leaf and then I have the char. If the code has length m this takes
+ O(m)-time. 
+
+In comparison a dictionary-based approach, requires O(N)-time (amortised) to add all the codes
+ to a dictionary, which seems better than O(L), but since the longest possible code has constant
+ length, we have O(L) = O(N). Thus, both approaches incur a similar construction overhead,
+ although the tree approach will have worse constants. However, the dictionary-based approach
+ has poor search times. Since I don't know in advance which Huffman code, I'm reading I'm
+ forced to search the dictionary for every possible prefix of the code until I find it (this
+ is what your loop on line 64 does). Moreover, the dictionary needs to be passed a string
+ so we must continuously make new strings for each prefix which leads to an O(m^2) lookup
+ for a code of length m. 
+
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+If you have any queries regarding any of the above please do not
+hesitate to contact me via email at: Taylor.Kearney@monash.edu
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------

@@ -1,0 +1,1 @@
+Your decoder should take as input one of the encoder output files and decode it to recover the original string. The dictionary size (L) and the look-ahead buffer size (B) is indicated in the file name and you can check your output against the corresponding decoder output file. Some decoded texts have been omitted since the correct decoding will be obvious once it is obtained. 
